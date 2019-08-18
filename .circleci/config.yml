@@ -1,0 +1,18 @@
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.9
+    working_directory: /go/src/github.com/lundin/golang-cli
+    steps:
+      - checkout
+      - run:
+          name: run build
+          command: |
+            go build -v
+      - run:
+          name: run tests
+          command: |
+            go fmt ./...
+            go test -v ./...
